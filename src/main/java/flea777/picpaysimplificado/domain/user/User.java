@@ -1,10 +1,8 @@
 package flea777.picpaysimplificado.domain.user;
 
+import flea777.picpaysimplificado.dtos.UserDTO;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import java.math.BigDecimal;
 
@@ -13,6 +11,7 @@ import java.math.BigDecimal;
 @Getter
 @Setter
 @AllArgsConstructor
+@NoArgsConstructor
 @EqualsAndHashCode(of = "id")
 public class User {
 
@@ -32,4 +31,14 @@ public class User {
 
     @Enumerated(EnumType.STRING)
     private UserType userType;
+
+    public User(UserDTO data) {
+        firstName = data.firstName();
+        lastName = data.lastName();
+        document = data.document();
+        email = data.email();
+        password = data.password();
+        balance = data.balance();
+        userType = data.userType();
+    }
 }
